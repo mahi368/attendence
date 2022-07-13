@@ -6,7 +6,7 @@
 	<tr>
 		<td><%= standard.class_name %></td>
 		<td><%= button_to "show" , standard_path(standard , ) , method: :get %></td>
-		<% if current_user.has_role?(:faculty) %>
+		<% if current_user.has_role?(:Faculty) %>
 		<td><%= button_to "edit" , edit_standard_path(standard) , method: :get %></td>
 		<td><%= button_to "destroy" , standard_path(standard) , method: :delete ,  data: { confirm: 'Are you sure?' } %></td>
 		<% end %>

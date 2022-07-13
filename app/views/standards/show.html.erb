@@ -16,13 +16,13 @@
 		<tr>			
 			<td><%= student.enrollment_number %></td>
 			<td><%= student.first_name + " " + student.last_name %></td>
-			<% if current_user.has_role? :faculty %>
+			<% if current_user.has_role? :Faculty %>
 			<td><%= render "attendence" , student: student %></td>			
 			<% else %>	
 			<td></td>
 			<% end %>		
 			<td><%= student.attendences.count %></td>
-			<% if current_user.has_role? :faculty %>
+			<% if current_user.has_role? :Faculty %>
 			<td><%= button_to "remove student", user_standard_path(student, standard_id: @standard.id), method: :delete  %></td>		
 			<% end %>	
 		</tr>
@@ -32,7 +32,7 @@
 		<h3 style="color: grey;">NOT FOUND</h3>
 	<% end %>
 
-<% if current_user.has_role?(:faculty) %>	
+<% if current_user.has_role?(:Faculty) %>	
 	<%= render "studentlist" %>	
 <% elsif current_user.has_role?(:student) %>
 	<h3>Your details</h3>

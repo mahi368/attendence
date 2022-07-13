@@ -8,7 +8,7 @@
     <tr>
       <td><%= button_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link', method: :get %></td>
       <td><%= button_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></td>
-          <% if current_user.has_role? :faculty %>
+          <% if current_user.has_role? :Faculty %>
       <td><%= button_to 'add a class' , new_standard_path , method: :get %>
           <% end %></td>
     </tr>

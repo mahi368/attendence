@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :attendences
 
   def role?
-    if self.has_role? :faculty
+    if self.has_role? :Faculty
       return "Faculty"
     else
       return "Student"
