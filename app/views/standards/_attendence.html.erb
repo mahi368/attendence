@@ -1,0 +1,27 @@
+
+
+ <label class="switch">
+
+ 	<%= hidden_field_tag :standard_id , @standard.id %>
+
+ 	<%= check_box("attendence", student.id , {checked: student.attendences.present? ? true : false ,  class: "checkbox-class" })  %>
+
+	<span class="slider round"></span>
+</label>
+
+
+<script>
+	$(".checkbox-class").on("click", function (){
+		
+		var a = this.id; 
+		var user_id = a.replace(/[A-Za-z$_-]/g, "") ;
+		var attendence = this.checked;
+		var standard = $("#standard_id").val();
+
+		$.ajax({
+		  url: "/standards/create_attendence",
+		  type: "post",
+		  data: {user_id: user_id, attendence: attendence, standard: standard }
+		});
+	});
+</script>

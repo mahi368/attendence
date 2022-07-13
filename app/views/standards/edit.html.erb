@@ -1,0 +1,11 @@
+<h2>Edit class</h2>
+<%= form_with model: @standard , url: standard_path , method: :put do |form| %>
+<div>
+	<%= form.label :class_name , 'Class name ' %><br>
+	<%= form.text_field :class_name %>
+</div><br>
+<div>
+	<%= form.submit 'update class' %>
+	<%= button_to "Back to dashboard" , root_path , method: :get %>
+</div>
+<% end %><br>

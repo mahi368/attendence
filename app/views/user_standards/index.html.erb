@@ -1,0 +1,21 @@
+<h3>All students</h3>
+
+	<table>
+		<tr>
+			<th>Enrollment number</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>User name</th>
+		</tr>
+		<% User.all.each do |student| %>
+		<tr>
+			<td><%= student.enrollment_number %></td>
+			<td><%= student.first_name + " " + student.last_name %></td>
+			<td><%= student.email %></td>	
+			<td><%= student.user_name %></td>
+			<td><%#= button_to "Add student" , user_standards_path(standard_id: @standard.id , user_id: student.id) , method: :post %></td>	
+		</tr>
+		<% end %>
+	</table>
+
+	<%#= link_to "back" , root_path %>

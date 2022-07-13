@@ -1,0 +1,11 @@
+<h2>Add new class</h2>
+<%= form_with model: @standard , url: standards_path , method: :post do |form| %>
+<div>
+	<%= form.label :class_name , 'Class name' %><br>
+	<%= form.text_field :class_name %>
+</div><br>
+<div>
+	<%= form.submit 'create class' %>
+	<%= button_to "Back to dashboard" , root_path , method: :get %>
+</div>
+<% end %>
