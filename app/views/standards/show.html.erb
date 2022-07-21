@@ -15,7 +15,11 @@
 		<% @students.each do |student| %>
 		<tr>			
 			<td><%= student.enrollment_number %></td>
+			<% if student.first_name.present? || student.last_name.present? %>
 			<td><%= student.first_name + " " + student.last_name %></td>
+			<% else %>
+			<td></td>
+			<% end %>
 			<% if current_user.has_role? :Faculty %>
 			<td><%= render "attendence" , student: student %></td>			
 			<% else %>	

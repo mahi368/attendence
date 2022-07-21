@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>Student added to <%= @student.standards.map(&:class_name) %>!</p>
+    <p>
+    Student details<br>
+    --------------------------
+    </p>
+    <p>Name: <%= @student.first_name + @student.last_name %></p>
+    <p>Email: <%= @student.email %></p>
+    <p>Enrollment number: <%= @student.enrollment_number %></p>
+    <p>
+    Message:<br>
+    ----------
+    </p>
+    <p>Student added to <%= @student.standards.map(&:class_name) %></p>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+Student added to <%= @student.standards.map(&:class_name) %>!
+
+    Student details
+    --------------------------
+  
+   Name: <%= @student.first_name + @student.last_name %>
+   Email: <%= @student.email %>
+   Enrollment number: <%= @student.enrollment_number %>
+    Message:
+    ----------
+   
+   Student added to <%= @student.standards.map(&:class_name) %>

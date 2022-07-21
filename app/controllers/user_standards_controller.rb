@@ -12,6 +12,7 @@ class UserStandardsController < ApplicationController
 		else
 			@user_standard = UserStandard.new(standard_id: params[:standard_id], user_id: params[:user_id])
 			@user_standard.save
+			StudentMailer.with(student: @student).new_student.deliver_later
 		end
 		redirect_to standard_path(id: params[:standard_id])
 	end
