@@ -39,22 +39,24 @@
 <% if current_user.has_role?(:Faculty) %>
 	<%= render "studentlist" %>	
 <% elsif current_user.has_role?(:Student) %>
-	<h3>Your details</h3>
-  <table>
-		<tr>
-			<th>Enrollment number</th>
-			<th>Name</th>
-			<th>Email</th>
-			<th>User name</th>
-		</tr>
-		<tr>
-			<td><%= current_user.enrollment_number %></td>
-			<td><%= current_user.first_name + " " + current_user.last_name %></td>
-			<td><%= current_user.email %></td>	
-			<td><%= current_user.user_name %></td>
-			<td><%= button_to "Enroll to this class" , user_standards_path(standard_id: @standard.id , user_id: current_user.id) , method: :post %></td>
-		</tr>
-	</table>
+	<% if current_user.user_standards.present?.eql?(false) %>
+		<h3>Your details</h3>
+	  <table>
+			<tr>
+				<th>Enrollment number</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>User name</th>
+			</tr>
+			<tr>
+				<td><%= current_user.enrollment_number %></td>
+				<td><%= current_user.first_name + " " + current_user.last_name %></td>
+				<td><%= current_user.email %></td>	
+				<td><%= current_user.user_name %></td>
+				<td><%= button_to "Enroll to this class" , user_standards_path(standard_id: @standard.id , user_id: current_user.id) , method: :post %></td>
+			</tr>
+		</table>
+	<% end %>
 <% end %><br>
 <%= link_to 'Download PDF', download_pdf_standards_path(standard_id: @standard.id)  %><br>
 
