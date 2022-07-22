@@ -36,9 +36,9 @@
 		<h3 style="color: grey;">NOT FOUND</h3>
 	<% end %>
 
-<% if current_user.has_role?(:Faculty) %>	
+<% if current_user.has_role?(:Faculty) %>
 	<%= render "studentlist" %>	
-<% elsif current_user.has_role?(:student) %>
+<% elsif current_user.has_role?(:Student) %>
 	<h3>Your details</h3>
   <table>
 		<tr>
