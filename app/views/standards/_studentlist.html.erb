@@ -18,7 +18,7 @@
 					<% end %>
 					<td><%= student.email %></td>	
 					<td><%= student.user_name %></td>
-					<td><%= button_to "Add student" , user_standards_path(standard_id: @standard.id , user_id: student.id) , method: :post %></td>
+					<td><%= button_to "Add student" , user_standards_path(standard_id: @standard.id , user_id: student.id) , method: :post, remote: true %></td>
 				<% end %>
 			<% end %>	
 		</tr>

@@ -27,7 +27,7 @@
 			<% end %>		
 			<td><%= student.attendences.count %></td>
 			<% if current_user.has_role? :Faculty %>
-			<td><%= button_to "remove student", user_standard_path(student, standard_id: @standard.id), method: :delete  %></td>		
+			<td><%= button_to "remove student", user_standard_path(student, standard_id: @standard.id), method: :delete , remote: true  %></td>		
 			<% end %>	
 		</tr>
 		<% end %>
