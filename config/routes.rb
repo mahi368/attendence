@@ -13,4 +13,6 @@ Rails.application.routes.draw do
       get :download_pdf
     end 
   end
+  
+  mount ActionCable.server, at: '/cable'
 end

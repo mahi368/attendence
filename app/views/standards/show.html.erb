@@ -1,11 +1,34 @@
 <h2>Class : <%= @standard.class_name %></h2>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand">Students list</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link "><%= button_to "Home" , root_path, method: :get , :class => "btn btn-outline-secondary" %></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link"><%= link_to 'Download PDF', download_pdf_standards_path(standard_id: @standard.id) , :class => "btn btn-outline-secondary" %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"><%= button_to 'Download CSV', standard_path(@standard, format: "csv") ,method: :get, :class => "btn btn-outline-secondary" %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">______________________________________________</a>
+      </li>
+    </ul>
+   	<%= render 'form' %>
+  </div>
+</nav>
 
-<h3>Students list</h3>
 
-	<%= render 'form' %>
+	
 
 	<% if @students.present? %>
-	<table>
+	<div id = "students">
+	<table class="table table-striped">
 		<tr>
 			<th>Enrollment number</th>
 			<th>Name</th>			
@@ -27,11 +50,12 @@
 			<% end %>		
 			<td><%= student.attendences.count %></td>
 			<% if current_user.has_role? :Faculty %>
-			<td><%= button_to "remove student", user_standard_path(student, standard_id: @standard.id), method: :delete , remote: true  %></td>		
+			<td><%= button_to "remove student", user_standard_path(student, standard_id: @standard.id), method: :delete , remote: true  %></td>	
 			<% end %>	
 		</tr>
 		<% end %>
-	</table>
+	</table>		
+	</div>
 	<% else %>
 		<h3 style="color: grey;">NOT FOUND</h3>
 	<% end %>
@@ -41,7 +65,7 @@
 <% elsif current_user.has_role?(:Student) %>
 	<% if current_user.user_standards.present?.eql?(false) %>
 		<h3>Your details</h3>
-	  <table>
+	  <table class="table table-striped">
 			<tr>
 				<th>Enrollment number</th>
 				<th>Name</th>
@@ -58,7 +82,4 @@
 		</table>
 	<% end %>
 <% end %><br>
-<%= link_to 'Download PDF', download_pdf_standards_path(standard_id: @standard.id)  %><br>
 
-<%= link_to 'Download CSV', standard_path(@standard, format: "csv") %><br>
-<%= link_to "Back" , root_path %>

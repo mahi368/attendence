@@ -9,7 +9,9 @@
     Student details<br>
     --------------------------
     </p>
+    <% if @student.first_name.present? || @student.last_name.present? %>
     <p>Name: <%= @student.first_name + @student.last_name %></p>
+    <% end %>
     <p>Email: <%= @student.email %></p>
     <p>Enrollment number: <%= @student.enrollment_number %></p>
     <p>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_29_132225) do
+ActiveRecord::Schema.define(version: 2022_07_22_102518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,38 @@ ActiveRecord::Schema.define(version: 2022_06_29_132225) do
     t.integer "attendence"
     t.index ["standard_id"], name: "index_attendences_on_standard_id"
     t.index ["user_id"], name: "index_attendences_on_user_id"
+  end
+
+  create_table "fees", force: :cascade do |t|
+    t.boolean "paid", default: false
+    t.string "token"
+    t.integer "fee"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "status"
+    t.string "token"
+    t.string "charge_id"
+    t.string "error_message"
+    t.string "customer_id"
+    t.integer "payment_gateway"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "stripe_plan_name"
+    t.string "paypal_plan_name"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -65,6 +97,10 @@ ActiveRecord::Schema.define(version: 2022_06_29_132225) do
     t.string "last_name"
     t.string "enrollment_number"
     t.integer "temp"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

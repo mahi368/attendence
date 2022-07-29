@@ -2,18 +2,32 @@
 
 <p class="navbar-text float-right">
 <% if user_signed_in? %>
-  Hello <strong><%= current_user.role? %></strong><br>
-  Logged in as <strong><%= current_user.email %></strong>.<br>
-  <table>
-    <tr>
-      <td><%= button_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link', method: :get %></td>
-      <td><%= button_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></td>
-          <% if current_user.has_role? :Faculty %>
-      <td><%= button_to 'add a class' , new_standard_path , method: :get %>
-          <% end %></td>
-    </tr>
-  </table>
-
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><%= current_user.role? %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link">
+            <% if current_user.has_role? :Faculty %>
+              <%= button_to 'add a class' , new_standard_path , method: :get , :class => "btn btn-outline-success" %>
+            <% end %>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><%= button_to 'Edit profile', edit_user_registration_path, :class => "btn btn-outline-secondary", method: :get %></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link"><%= button_to "Logout", destroy_user_session_path, method: :delete,:class => "btn btn-outline-danger" %></a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        Logged in as <strong><%= current_user.email %></strong>.
+      </span>
+    </div>
+  </nav>
   <%= render "standards" %>
 
 <% else %>

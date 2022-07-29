@@ -13,6 +13,14 @@ class UserStandardsController < ApplicationController
 			@user_standard = UserStandard.new(standard_id: params[:standard_id], user_id: params[:user_id])
 			@user_standard.save
 			StudentMailer.with(student: @student).new_student.deliver_later
+			ActionCable.server.broadcast(
+		        "feed_channel",
+		        email: @user_standard.user.email,
+		        enrollment_number: @user_standard.user.enrollment_number,
+		        user_name: @user_standard.user.user_name,
+		        first_name: @user_standard.user.first_name,
+		        last_name: @user_standard.user.last_name
+		      )
 		end
 		redirect_to standard_path(id: params[:standard_id])
 	end
